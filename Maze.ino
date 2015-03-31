@@ -12,39 +12,40 @@ Servo serX;  // create serX object to control a serX
 char numStr[4];
 int turn,pos;
 int turnbefore=0;
+int serTurn=90;
+boolean turnR=false;
 void setup() { 
   Serial.begin(9600);
-  serX.attach(9);  // attaches the serX on pin 9 to the serX object 
-  serX.write(0);
-  delay(500);
+  serX.attach(9);  // attaches the serX on pin 9 to the serX object
 } 
  
 void loop() {
-  char buffer[] = {' ',' ',' ',' ',' ',' ',' '}; // Receive up to 7 bytes
-  while(Serial.available() && Serial.read()>0){
-     Serial.readBytesUntil('n', buffer, 7);
-     int x = atoi(buffer);
+  char buffer[] = {' ',' ',' '}; // Receive up to 7 bytes
+  if(Serial.available()){
+     Serial.readBytesUntil('n', buffer, 3);
+     int x = atoi(buffer)-100;
      if (x<=0){
        turn=0;
      }
-     else if(x>180){
+     else if(x>=180){
        turn=180;
      }
      else{
        turn=x;
      }
      if(turn>turnbefore){
-       for(pos=0;pos<=turn;pos+=1){
+       for(pos=turnbefore;pos<=turn;pos+=1){
          serX.write(pos);
          delay(5);
        }
+       turnbefore=turn;
      }
      else if(turn<turnbefore){
-       for(pos=turn;pos>=0;pos-=1){
+       for(pos=turnbefore;pos>=turn;pos-=1){
          serX.write(pos);
          delay(5);
        }
+       turnbefore=turn;
      }
-     turnbefore=turn;
   }
 } 
