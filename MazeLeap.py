@@ -11,7 +11,7 @@ class SampleListener(Leap.Listener):
         hand = frame.hands.rightmost #create rightmost hand
         handCenter = hand.palm_position #get hand palm position
         posX=(int((handCenter.x/200)*(90)+90))+100 #get x coordinate position and convert it to [100,280]
-        posY=(int((handCenter.y/200)*(90)+90))+100 #+100 is to equalize the number of digits
+        posY=(int((handCenter.z/200)*(90)+90))+100 #+100 is to equalize the number of digits
         print ("x: " + str(posX) + " y: " + str(posY))
         ser.write(str(posX)+str(posY)) #writes the positions as a 6 digit value
         time.sleep(0.1)
