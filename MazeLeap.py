@@ -13,9 +13,9 @@ class SampleListener(Leap.Listener):
         hand = frame.hands.rightmost
         handCenter = hand.palm_position
         posX=(int((handCenter.x/200)*(90)+90))+100
-        posY=int((handCenter.y/200)*(90)+90)
+        posY=(int((handCenter.y/200)*(90)+90))+100
         print ("x: " + str(posX) + " y: " + str(posY))
-        ser.write(str(posX))
+        ser.write(str(posX)+str(posY))
         time.sleep(0.1)
 def main():
     listener = SampleListener()
