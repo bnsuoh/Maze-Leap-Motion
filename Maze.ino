@@ -12,7 +12,7 @@ int beforeY=0;
 void setup() { 
   Serial.begin(9600);
   serX.attach(9);  // attach the serX on pin 9
-  serY.attach(10); // attach the serY on pin 10
+  serY.attach(8); // attach the serY on pin 10
 } 
 void loop() {
   char buffer[] = {' ',' ',' ',' ',' ',' '}; // receive up to 6 bytes
