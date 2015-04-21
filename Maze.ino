@@ -60,5 +60,5 @@ void loop() {
      }
      serX.write(xAng);
      serY.write(yAng);
-     delay(50);
+     delay(40);
 }
