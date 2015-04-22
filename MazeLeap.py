@@ -28,7 +28,7 @@ class SampleListener(Leap.Listener):
             posY=beforeY
         beforeX=posX
         beforeY=posY
-        print ("x: " + str(posX) + " y: " + str(posY))
+        print ("x: " + str(posX-100) + " y: " + str(posY-100))
         ser.write(str(posX)+str(posY)) #writes the positions as a 6 digit value
         time.sleep(0.04)
 def main():
